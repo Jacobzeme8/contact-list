@@ -172,6 +172,8 @@ button:hover{
   background-color: var(--primary-lighten);
 }
 
+
+
 .emergency-contact{
   background: var(--dark);
   color: var(--light);

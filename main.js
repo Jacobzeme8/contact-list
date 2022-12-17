@@ -1,15 +1,30 @@
+// @ts-nocheck
 let contacts = []
+let contact = {}
+
 
 /**
- * Called when submitting the new Contact Form
- * This method will pull data from the form
- * use the provided function to give the data an id
- * then add that data to the contacts list.
- * Then reset the form
+ * Called when submitting the new Contact Form^^
+ * This method will pull data from the form^^
+ * use the provided function to give the data an id^^
+ * then add that data to the contacts list.^^
+ * Then reset the form^^
  * *** hints:
  * *** push: resources/push.jpg
  */
 function addContact(event) {
+  event.preventDefault()
+  let form = event.target
+  contact = {
+    contactName: form.name.value,
+    contactNumber: form.phoneNumber.value,
+    emergencyContact: form.emergencyContact.checked,
+    contactId: generateId()
+  }
+  contacts.push(contact)
+  console.log(contact);
+  saveContacts()
+  form.reset()
 }
 
 /**
@@ -17,6 +32,7 @@ function addContact(event) {
  * Saves the string to localstorage at the key contacts 
  */
 function saveContacts() {
+  window.localStorage.setItem("contacts", JSON.stringify(contacts))
 }
 
 /**
@@ -25,6 +41,12 @@ function saveContacts() {
  * the contacts array to the retrieved array
  */
 function loadContacts() {
+  let contactsData = JSON.parse(window.localStorage.getItem("contacts"))
+  if(contactsData){
+    contacts = contactsData
+    
+  }
+  
 }
 
 /**
@@ -33,6 +55,8 @@ function loadContacts() {
  * contacts in the contacts array
  */
 function drawContacts() {
+  let contactListElement = document.getElementById("contact-list")
+  
 }
 
 /**
@@ -47,10 +71,11 @@ function drawContacts() {
 function removeContact(contactId) {
 }
 
-/**
- * Toggles the visibility of the AddContact Form
+/**^^
+ * Toggles the visibility of the AddContact Form^^
  */
 function toggleAddContactForm() {
+  document.getElementById("new-contact-form").classList.toggle("hidden")
 }
 
 
