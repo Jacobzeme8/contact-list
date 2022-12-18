@@ -22,7 +22,7 @@ function addContact(event) {
     contactId: generateId()
   }
   contacts.push(contact)
-  console.log(contact);
+  
   saveContacts()
   form.reset()
 }
@@ -33,6 +33,7 @@ function addContact(event) {
  */
 function saveContacts() {
   window.localStorage.setItem("contacts", JSON.stringify(contacts))
+  drawContacts()
 }
 
 /**
@@ -56,8 +57,29 @@ function loadContacts() {
  */
 function drawContacts() {
   let contactListElement = document.getElementById("contact-list")
+  let contactCardTemplate = " "
+
+  contacts.forEach(contact => {
+    contactCardTemplate += `
+    <div class="card mt-1 mb-1 ${contact.emergencyContact ? 'emergency-contact' : ''}">
+        <h3 class="mt-1 mb-1">${contact.contactName}</h3>
+        <div class="d-flex space-between">
+          <p>
+            <i class="fa fa-fw fa-phone"></i>
+            <span>${contact.contactNumber}</span>
+          </p>
+          <i type = "button" onclick ="removeContact('${contact.contactId}')" class="action fa fa-trash text-danger"></i>
+        </div>
+      </div>
+    `
+    
+  })
+    
+    contactListElement.innerHTML = contactCardTemplate
+  
   
 }
+
 
 /**
  * This function is called with a contact id
@@ -66,9 +88,16 @@ function drawContacts() {
  * *** hints: 
  * *** findIndex: resources/findIndex.jpg
  * *** splice: resources/splice.jpg
- * @param {string} contactId 
+ * @param {string} contactIdS 
  */
-function removeContact(contactId) {
+function removeContact(contactIdS) {
+ let index = contacts.findIndex(contact => contact.contactId == contactIdS)
+ console.log(index);
+ if(index == -1){
+  throw new console.error("invalid Contact ID");
+ }
+ contacts.splice(index, 1)
+ drawContacts()
 }
 
 /**^^

@@ -40,3 +40,4 @@ The basic design and layout for this app has been mocked out and the names of th
     - Load the contacts list
     - Draw the contacts list
 4. Show and Hide Form on button clicks
+

@@ -67,6 +67,13 @@ button:hover{
   background-color: var(--primary-lighten);
 }
 
+.delete-button{
+  background-color: white;
+  display: flex;
+  justify-content: right;
+
+}
+
 .contacts{
   overflow-y: scroll;
   max-height: 50vh; 
@@ -172,7 +179,18 @@ button:hover{
   background-color: var(--primary-lighten);
 }
 
-
+.contact-card{
+  background-color: var(--light);
+  padding: 1em;
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
+  margin-top: .5em;
+  margin-bottom: .5em;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  
+  
+}
 
 .emergency-contact{
   background: var(--dark);
